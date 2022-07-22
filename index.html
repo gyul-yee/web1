@@ -106,28 +106,41 @@ for (var key in MARKER_SPRITE_POSITION) {
     var infoWindow = new naver.maps.InfoWindow({
         content: [
             '<div style="flex-direction: column;position: absolute;padding:40px 28px 40px 28px;background-color: rgba(236, 224, 255, 1);border-radius: 25px">',
-                '<div style="align-items: center; margin-bottom:11px">',
-                    '<span style="float:left;padding-right:5px">위치</span>',
-                    '<div style="width: 240px;padding: 4px;background-color:#fff;text-align: left;float:left">서울 용산구 새창로45가길 20</div>',
+                '<div style="align-items: center">',
+                    '<span style="float:left;padding-right:5px;margin-bottom:11px">위치</span>',
+                    '<div style="width: 240px;padding: 4px;background-color:#fff;text-align: left;float:left;margin-bottom:11px">서울 용산구 새창로45가길 20</div>',
                 '</div>',
                 '<div style="align-items: center;">',
-                    '<span style="padding-right:5px;float:left">시간</span>',
-                    '<div style="width: 240px;padding: 4px;background-color:#fff;text-align: left; float:left">1시간 이내</div>',
+                    '<span style="padding-right:5px;float:left;margin-bottom:11px">시간</span>',
+                    '<div style="width: 240px;padding: 4px;background-color:#fff;text-align: left; float:left;margin-bottom:11px">1시간 이내</div>',
                 '</div>',
                 '<div style="align-items: center;">',
-                    '<span style="padding-right:5px;float:left">가격</span>',
-                    '<div style="width: 240px;padding: 4px;background-color:#fff;text-align: left; float:left">1,000</div>',
+                    '<span style="padding-right:5px;float:left;margin-bottom:11px">가격</span>',
+                    '<div style="width: 240px;padding: 4px;background-color:#fff;text-align: left; float:left;margin-bottom:11px">1,000</div>',
                 '</div>',
                 '<div style="align-items: center;">',
-                    '<span style="padding-right:5px;float:left">정보</span>',
-                    '<div style="width: 240px;padding: 4px;background-color:#fff;text-align: left; float:left">생수</div>',
+                    '<span style="padding-right:5px;float:left;margin-bottom:11px;">정보</span>',
+                    '<div style="width: 240px;padding: 4px;background-color:#fff;text-align: left; float:left;margin-bottom:11px">생수</div>',
+                '</div>',
+                '<hr/>',
+                '<div style="align-items: center;">',
+                    '<span style="padding-right:5px;float:left;margin-bottom:11px;">배송 예상 시간</span>',
+                    '<input type="text" style="width: 165px;padding: 4px;background-color:#fff;text-align: left; float:left;margin-bottom:11px;border-width:0; font-size: 15px"/>',
+                '</div>',
+                '<div style="align-items: center;">',
+                    '<span style="padding-right:5px;float:left;margin-bottom:11px;">현재 위치</span>',
+                    '<input type="text" style="width: 203px;padding: 4px;background-color:#fff;text-align: left; float:left;margin-bottom:11px;border-width:0; font-size: 15px"/>',
+                '</div>',
+                '<div style="justify-content: space-evenly;">',
+                    '<button style="background: #F0F0F0;border-radius: 10px;width:105px;height:25px;border-width:0;margin-left:20px;margin-right:35px">나가기</button>',
+                    '<button style="background: #D5F999;border-radius: 10px;width:105px;height:25px;border-width:0;">매칭 요청</button>',
                 '</div>',
             '</div>'
             ].join(''),
         backgroundColor: 'rgba(236, 224, 255, 0)',
         borderWidth: 0,
         maxWidth: 300,
-        pixelOffset: new naver.maps.Point(30, -45)
+        pixelOffset: new naver.maps.Point(30, -52)
         
     });
 
@@ -178,8 +191,28 @@ function getClickHandler(seq) {
 
         if (infoWindow.getMap()) {
             infoWindow.close();
+            marker.setOptions({icon: {
+            content: [
+                    '<div style="background-color: #ffffff; border-radius: 7px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); padding: 0px 8px 2px 8px;">',
+                        '<span style="color:black; font-size: 11px">1,000</span>',
+                    '</div>'
+                ].join(''),
+            size: new naver.maps.Size(20,65),  
+            anchor: new naver.maps.Point(12, 37),
+            origin: new naver.maps.Point(MARKER_SPRITE_POSITION[key][0], MARKER_SPRITE_POSITION[key][1])
+        }})
         } else {
             infoWindow.open(map, marker);
+            marker.setOptions({icon: {
+            content: [
+                    '<div style="background-color: #E8FFC1; border-radius: 7px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); padding: 0px 8px 2px 8px;">',
+                        '<span style="color:black; font-size: 11px">1,000</span>',
+                    '</div>'
+                ].join(''),
+            size: new naver.maps.Size(20,65),  
+            anchor: new naver.maps.Point(12, 37),
+            origin: new naver.maps.Point(MARKER_SPRITE_POSITION[key][0], MARKER_SPRITE_POSITION[key][1])
+        }})
         }
     }
 }
