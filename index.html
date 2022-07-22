@@ -71,8 +71,12 @@ for (var key in MARKER_SPRITE_POSITION) {
         position: position,
         title: key,
         icon: {
-            url: HOME_PATH +'/img/example/sp_pins_spot_v3.png',
-            size: new naver.maps.Size(24, 37),
+            content: [
+                    '<div style="background-color: #ffffff; border-radius: 7px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); padding: 0px 8px 2px 8px;">',
+                        '<span style="color:black; font-size: 11px">1,000</span>',
+                    '</div>'
+                ].join(''),
+            size: new naver.maps.Size(20,65),
             anchor: new naver.maps.Point(12, 37),
             origin: new naver.maps.Point(MARKER_SPRITE_POSITION[key][0], MARKER_SPRITE_POSITION[key][1])
         },
