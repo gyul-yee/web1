@@ -6,12 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>간단한 지도 표시하기</title>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4r5lfzdrxx"></script>
+    <style>
+        .modal {
+          position: absolute;
+          top: 0;
+          left: 0;
+  
+          width: 100%;
+          height: 100%;
+  
+          display: none;
+  
+          background-color: rgba(0, 0, 0, 0.4);
+        }
+        .modal.show{
+            display: block;
+        }
+      </style>
 </head>
 <body>
+    <div class = "modal">
+        <div class="modal_body">Modal</div>
+    </div>
 <div id="map" style="width:400px;height:700px;"></div>
 
 <script>
-var HOME_PATH = window.HOME_PATH || '.';
+ var HOME_PATH = window.HOME_PATH || '.';
 var MARKER_SPRITE_X_OFFSET = 29,
     MARKER_SPRITE_Y_OFFSET = 50,
     MARKER_SPRITE_POSITION = {
@@ -76,7 +96,7 @@ for (var key in MARKER_SPRITE_POSITION) {
                         '<span style="color:black; font-size: 11px">1,000</span>',
                     '</div>'
                 ].join(''),
-            size: new naver.maps.Size(20,65),
+            size: new naver.maps.Size(20,65),  
             anchor: new naver.maps.Point(12, 37),
             origin: new naver.maps.Point(MARKER_SPRITE_POSITION[key][0], MARKER_SPRITE_POSITION[key][1])
         },
@@ -84,11 +104,36 @@ for (var key in MARKER_SPRITE_POSITION) {
     });
 
     var infoWindow = new naver.maps.InfoWindow({
-        content: '<div style="width:150px;text-align:center;padding:10px;">The Letter is <b>"'+ key.substr(0, 1) +'"</b>.</div>'
+        content: [
+            '<div style="flex-direction: column;position: absolute;padding:40px 28px 40px 28px;background-color: rgba(236, 224, 255, 1);border-radius: 25px">',
+                '<div style="align-items: center; margin-bottom:11px">',
+                    '<span style="float:left;padding-right:5px">위치</span>',
+                    '<div style="width: 240px;padding: 4px;background-color:#fff;text-align: left;float:left">서울 용산구 새창로45가길 20</div>',
+                '</div>',
+                '<div style="align-items: center;">',
+                    '<span style="padding-right:5px;float:left">시간</span>',
+                    '<div style="width: 240px;padding: 4px;background-color:#fff;text-align: left; float:left">1시간 이내</div>',
+                '</div>',
+                '<div style="align-items: center;">',
+                    '<span style="padding-right:5px;float:left">가격</span>',
+                    '<div style="width: 240px;padding: 4px;background-color:#fff;text-align: left; float:left">1,000</div>',
+                '</div>',
+                '<div style="align-items: center;">',
+                    '<span style="padding-right:5px;float:left">정보</span>',
+                    '<div style="width: 240px;padding: 4px;background-color:#fff;text-align: left; float:left">생수</div>',
+                '</div>',
+            '</div>'
+            ].join(''),
+        backgroundColor: 'rgba(236, 224, 255, 0)',
+        borderWidth: 0,
+        maxWidth: 300,
+        pixelOffset: new naver.maps.Point(30, -45)
+        
     });
 
     markers.push(marker);
     infoWindows.push(infoWindow);
+    infoWindow.setOptions({disableAnchor: true});
 };
 
 naver.maps.Event.addListener(map, 'idle', function() {
@@ -142,7 +187,6 @@ function getClickHandler(seq) {
 for (var i=0, ii=markers.length; i<ii; i++) {
     naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
 }
-
 </script>
 </body>
 </html>
