@@ -22,7 +22,10 @@
 			background-color: rgba(236, 224, 255, 1);
 			border-radius: 25px;
 		}
-		.overlaybox .textbox{
+		.overlaybox .line{
+			align-items: center
+		}
+		.line .textbox{
 			align-items: center;
 			padding: 4px;
 			background-color:#fff;
@@ -86,24 +89,24 @@
 		});
 
 		var infoContent='<div class="overlaybox">'+
-                		'	<div style="align-items: center">'+
+                		'	<div class="line">'+
                     	'		<span style="float:left;padding-right:5px;margin-bottom:11px">위치</span>'+
                     	'		<div class="textbox">서울 용산구 새창로45가길 20</div>'+
                 		'	</div>'+
-                		'	<div style="align-items: center;">'+
+                		'	<div style=class="line">'+
                     	'		<span style="padding-right:5px;float:left;margin-bottom:11px">시간</span>'+
                     	'		<div class="textbox>1시간 이내</div>'+
                 		'	</div>'+
-                		'	<div style="align-items: center;">'+
+                		'	<div style=class="line">'+
                     	'		<span style="padding-right:5px;float:left;margin-bottom:11px">가격</span>'+
                     	'		<div class="textbox>1,000</div>'+
                 		'	</div>'+
-                		'	<div style="align-items: center;">'+
+                		'	<div style=class="line">'+
                     	'		<span style="padding-right:5px;float:left;margin-bottom:11px;">정보</span>'+
                     	'		<div class="textbox>생수</div>'+
                 		'	</div>'+
                   		'	<hr/>'+
-                		'	<div style="align-items: center;">'+
+                		'	<div style=class="line">'+
                      	'		<span style="padding-right:5px;float:left;margin-bottom:11px;">배송 예상 시간</span>'+
                     	'		<input type="text" style="width:165px; padding: 4px;background-color:#fff;text-align: left; float:left; margin-bottom:11px;border-width:0; font-size: 15px"/>'+
                 		'	</div>'+
