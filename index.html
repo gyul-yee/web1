@@ -16,6 +16,8 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=19cf6167eee61c2847800c9ab316a5ec"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=clusterer"></script>
 	<script>
+		var latitude;
+		var longitude;
 		function success({coords}){
 			latitude = coords.latitude;
 			longitude = coords.longitude;
