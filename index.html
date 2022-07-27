@@ -15,28 +15,38 @@
     <script type = "text/javascript" src="apikey.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=19cf6167eee61c2847800c9ab316a5ec"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=clusterer"></script>
+	<script src="https://kit.fontawesome.com/e644c07ff1.js" crossorigin="anonymous"></script>
 	<script>
 		function success({coords}){
 			latitude = coords.latitude;
 			longitude = coords.longitude;
-
-			var container = document.getElementById('map');
-			var options = {
-				center: new kakao.maps.LatLng(latitude, longitude),
-				level: 3
-			};
-
-			var map = new kakao.maps.Map(container, options);
 		}
 			
 		function getUserLocation() {
 			if (!navigator.geolocation) {
 				throw "위치 정보가 지원되지 않습니다."
 			}
-			navigator.geolocation.watchPosition(success);
+			navigator.geolocation.getCurrentPosition(success);
 		}
 
 		getUserLocation()
+
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(latitude, longitude),
+			level: 3
+		};
+
+		var map = new kakao.maps.Map(container, options);
+
+		var cl = '<button style="background-color: #ffffff; positon: absolute; top: 5px; left: 5px;">' +
+				'	<i class="fa-solid fa-location-crosshairs"></i>'+
+				'</button>'
+
+		var currentLoc = new kakao.maps.CustomOverlay({
+			content: cl,
+			map: map,
+		});
 
 		var markerContent = '<div style="background-color: #ffffff; border-radius: 7px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); padding: 0px 8px 2px 8px;">'+
                         	'	<span style="color:black; font-size: 11px">1,000</span>'+
@@ -44,7 +54,7 @@
 		var marker = new kakao.maps.CustomOverlay({
 			content: markerContent,
 			map: map,
-			position: new kakao.maps.LatLng(latitude, longitude)
+			position: new kakao.maps.LatLng(37.40175, 126.922667)
 		});
 		
 	</script>
