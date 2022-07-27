@@ -8,6 +8,12 @@
         {
             margin: 0;
         }
+		.marker{
+			background-color: #ffffff; 
+			border-radius: 7px; 
+			box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); 
+			padding: 0px 8px 2px 8px;
+		}
     </style>
 </head>
 <body>
@@ -52,9 +58,11 @@
 		};
 
 		var map = new kakao.maps.Map(container, options);
-		var markerContent = '<div style="background-color: #ffffff; border-radius: 7px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); padding: 0px 8px 2px 8px;">'+
-                        	'	<span style="color:black; font-size: 11px">1,000</span>'+
-                    		'</div>';
+
+		var markerContent = document.createElement('div');
+		markerContent.className = "marker";
+		markerContent.innerHTML = '<span style="color:black; font-size: 11px">1,000</span>';
+
 		var marker = new kakao.maps.CustomOverlay({
 			content: markerContent,
 			map: map,
@@ -64,7 +72,7 @@
 		var infoContent ='<div style="flex-direction: column;width:340; position: absolute;padding:40px 28px 40px 28px;background-color: rgba(236, 224, 255, 1);border-radius: 25px">'+
                 		 '	<div style="align-items: center">'+
                     	 '		<span style="float:left;padding-right:5px;margin-bottom:11px">위치</span>'+
-                    	 '		<div style="width: 240px;padding: 4px;background-color:#fff;text-align: left;float:left;margin-bottom:11px">서울 용산구 새창로45가길 20</div>'+
+                    	 '		<div style="align-items: center;padding: 4px;background-color:#fff;text-align: left;float:left;margin-bottom:11px">서울 용산구 새창로45가길 20</div>'+
                 		 '	</div>'+
                 		 '	<div style="align-items: center;">'+
                     	 '		<span style="padding-right:5px;float:left;margin-bottom:11px">시간</span>'+
@@ -103,7 +111,7 @@
 			position: marker.getPosition()
 		})
 		
-		kakao.maps.event.addListener(marker, "click", function() {
+		kakao.maps.event.addListener(markerContent, 'click', function() {
 			infoOverlay.setMap(map);
 		});
 
