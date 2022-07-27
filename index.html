@@ -110,7 +110,7 @@
                 		 '	</div>'+
                 		 '	<div style="flex-direction:row; justify-content:space-evenly;">'+
                     	 '		<button onclick="closeOverlay()" style="float:left; background: #F0F0F0;border-radius: 10px;width:105px;height:25px;border-width:0;margin-left:20px;margin-right:35px">나가기</button>'+
-                    	 '		<button style="float:left; background: #D5F999;border-radius: 10px;width:105px;height:25px;border-width:0;">매칭 요청</button>'+
+                    	 '		<button onclick="submitReq" style="float:left; background: #D5F999;border-radius: 10px;width:105px;height:25px;border-width:0;">매칭 요청</button>'+
                 		 '	</div>'+
             			 '</div>';
 
@@ -130,6 +130,11 @@
 			document.querySelector("div.marker").style.background = "#ffffff";
 			infoOverlay.setMap(null);
 		};
+
+		function submitReq() {
+			document.querySelector("div.marker").style.background = "#ffffff";
+			infoOverlay.setMap(null);
+		}
 	</script>
 	
 </body>
