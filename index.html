@@ -111,7 +111,7 @@
 			position: marker.getPosition()
 		})
 		
-		kakao.maps.event.addListener(markerContent, 'click', function() {
+		markerContent.addEventListener('click', function() {
 			infoOverlay.setMap(map);
 		});
 
