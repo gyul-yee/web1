@@ -16,10 +16,13 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=19cf6167eee61c2847800c9ab316a5ec"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=clusterer"></script>
 	<script src="https://kit.fontawesome.com/e644c07ff1.js" crossorigin="anonymous"></script>
+	<button  id ="currntLoc" onclick="getCurrent()" style="background-color: #ffffff;position: absolute; top: 5px; left: 5px; z-index: 100;">
+		<i class="fa-solid fa-location-crosshairs"></i>
+	</button>
 	<script>
 		var latitude=37.5666805;
 		var longitude=126.9784147;
-		
+
 		function success({coords}){
 			latitude = coords.latitude;
 			longitude = coords.longitude;
@@ -32,7 +35,14 @@
 			navigator.geolocation.getCurrentPosition(success);
 		}
 
-		getUserLocation()
+		getUserLocation();
+
+		function getCurrunt() {
+			const btn = document.getElementById("currntLoc");
+			getUserLocation();
+			var moveLatLon = new kakao.maps.LatLng(latitude, longitude);
+			map.panTo(moveLatLon)
+		}
 
 		var container = document.getElementById('map');
 		var options = {
@@ -41,16 +51,6 @@
 		};
 
 		var map = new kakao.maps.Map(container, options);
-
-		var cl = '<button style="background-color: #ffffff; position: absolute; top: 5px; left: 5px;">' +
-				'	<i class="fa-solid fa-location-crosshairs"></i>'+
-				'</button>'
-
-		var currentLoc = new kakao.maps.CustomOverlay({
-			content: cl,
-			map: map,
-		});
-
 		var markerContent = '<div style="background-color: #ffffff; border-radius: 7px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); padding: 0px 8px 2px 8px;">'+
                         	'	<span style="color:black; font-size: 11px">1,000</span>'+
                     		'</div>';
@@ -61,5 +61,6 @@
 		});
 		
 	</script>
+	
 </body>
 </html>
