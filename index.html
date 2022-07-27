@@ -3,15 +3,37 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Kakao 지도 시작하기</title>
+	<style>
+        body
+        {
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
-	<div id="map" style="width:500px;height:400px;"></div>
+	<div id="map" style="width:400px;height:700px;"></div>
     <script type = "text/javascript" src="apikey.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=19cf6167eee61c2847800c9ab316a5ec"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=clusterer"></script>
 	<script>
+		function success({coords}){
+			const latitude = coords.latitude;
+			const longitude = coords.longitude;
+			alert(`${latitude}, ${longitude}`)
+		}
+			
+		function getUserLocation() {
+			if (!navigator.geolocation) {
+				throw "위치 정보가 지원되지 않습니다."
+			}
+			navigator.geolocation.getCurrentPosition(success);
+		}
+
+		getUserLocation()
+
 		var container = document.getElementById('map');
 		var options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			center: new kakao.maps.LatLng(latitude, longitude),
 			level: 3
 		};
 
