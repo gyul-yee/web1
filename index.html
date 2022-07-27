@@ -120,10 +120,12 @@
 		})
 		
 		markerContent.addEventListener('click', function() {
+			document.querySelector("div.marker").style.background = "#E8FFC1";
 			infoOverlay.setMap(map);
 		});
 
 		function closeOverlay() {
+			document.querySelector("div.marker").style.background = "#ffffff";
 			infoOverlay.setMap(null);
 		};
 	</script>
