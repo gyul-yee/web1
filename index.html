@@ -117,13 +117,12 @@
 		var infoOverlay = new kakao.maps.CustomOverlay({
 			content: infoContent,
 			position: marker.getPosition(),
-			xAnchor: 0.5,
-			yAnchor: 1,
 		})
 		
 		markerContent.addEventListener('click', function() {
 			document.querySelector("div.marker").style.background = "#E8FFC1";
 			infoOverlay.setMap(map);
+			map.setCenter(infoOverlay.getPosition());
 		});
 
 		function closeOverlay() {
